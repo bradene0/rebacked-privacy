@@ -5,116 +5,463 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta
     name="description"
-    content="Rebacked is a native macOS ebook library curator for organizing books, fixing metadata, managing covers, and exporting to your devices."
+    content="Rebacked is a native macOS ebook library curator for organizing books, fixing metadata, managing covers, and preparing books for Kindle and Kobo."
   >
   <meta name="color-scheme" content="light dark">
-
   <title>Rebacked — Ebook Library Curator for Mac</title>
-
-  <link rel="stylesheet" href="../styles.css">
+  <style>
+    :root {
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Text",
+        "Helvetica Neue",
+        sans-serif;
+      color-scheme: light dark;
+      --max-width: 760px;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      background: Canvas;
+      color: CanvasText;
+    }
+    header,
+    main,
+    footer {
+      width: min(var(--max-width), calc(100% - 40px));
+      margin: 0 auto;
+    }
+    header {
+      padding: 28px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: color-mix(in srgb, Canvas 94%, transparent);
+      backdrop-filter: blur(14px);
+      z-index: 10;
+    }
+    .brand {
+      color: inherit;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    nav {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: GrayText;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    nav a:hover {
+      color: CanvasText;
+    }
+    main {
+      padding-bottom: 72px;
+    }
+    section {
+      padding: 72px 0;
+      border-bottom: 1px solid color-mix(in srgb, CanvasText 12%, transparent);
+      scroll-margin-top: 96px;
+    }
+    .hero {
+      padding-top: 96px;
+    }
+    h1 {
+      margin: 0 0 16px;
+      font-size: clamp(42px, 8vw, 72px);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+    }
+    h2 {
+      margin: 0 0 18px;
+      font-size: 34px;
+      letter-spacing: -0.03em;
+    }
+    h3 {
+      margin-top: 36px;
+      font-size: 20px;
+    }
+    p,
+    li {
+      font-size: 16px;
+      line-height: 1.7;
+    }
+    .lead {
+      max-width: 640px;
+      font-size: 20px;
+      color: GrayText;
+    }
+    .meta {
+      color: GrayText;
+    }
+    .actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+    .button {
+      display: inline-block;
+      padding: 11px 18px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      background: CanvasText;
+      color: Canvas;
+    }
+    .button.secondary {
+      background: transparent;
+      color: CanvasText;
+      border: 1px solid color-mix(in srgb, CanvasText 20%, transparent);
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 48px;
+    }
+    .feature {
+      padding: 22px;
+      border: 1px solid color-mix(in srgb, CanvasText 12%, transparent);
+      border-radius: 14px;
+    }
+    .feature h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
+    .feature p {
+      margin: 0;
+      color: GrayText;
+      font-size: 14px;
+    }
+    a {
+      color: LinkText;
+    }
+    footer {
+      padding: 32px 0 48px;
+      color: GrayText;
+      font-size: 13px;
+    }
+    @media (max-width: 640px) {
+      header {
+        align-items: flex-start;
+        gap: 14px;
+        flex-direction: column;
+      }
+      .features {
+        grid-template-columns: 1fr;
+      }
+      section {
+        padding: 56px 0;
+      }
+    }
+  </style>
 </head>
-
 <body>
   <header>
-    <a class="brand" href="/">Rebacked</a>
-
+    <a class="brand" href="#top">Rebacked</a>
     <nav>
-      <a href="/support/">Support</a>
-      <a href="/privacy/">Privacy</a>
-      <a href="/terms/">Terms</a>
-      <a href="/changelog/">Changelog</a>
+      <a href="#support">Support</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#terms">Terms</a>
+      <a href="#changelog">Changelog</a>
     </nav>
   </header>
-
-  <main>
+  <main id="top">
     <section class="hero">
       <h1>Your ebook library, rebacked.</h1>
-
       <p class="lead">
         A native Mac app for organizing ebooks, fixing metadata,
-        finding better covers, managing series, and preparing books
-        for Kindle and Kobo.
+        managing covers and series, and preparing supported books
+        for Kindle and Kobo workflows.
       </p>
-
       <div class="actions">
         <a class="button" href="#">
           Coming to the Mac App Store
         </a>
-
-        <a class="button secondary" href="/support/">
-          Learn more
+        <a class="button secondary" href="#support">
+          Support
         </a>
       </div>
+      <div class="features">
+        <article class="feature">
+          <h3>Organize everything</h3>
+          <p>
+            Collections, Smart Collections, saved searches, series,
+            tags, ratings, notes, and custom metadata.
+          </p>
+        </article>
+        <article class="feature">
+          <h3>Fix your metadata</h3>
+          <p>
+            Edit titles, authors, series, ISBNs, tags, reading status,
+            and other book information.
+          </p>
+        </article>
+        <article class="feature">
+          <h3>Better covers</h3>
+          <p>
+            Replace artwork, search Open Library, keep cover history,
+            and repair missing EPUB covers.
+          </p>
+        </article>
+        <article class="feature">
+          <h3>Multiple formats</h3>
+          <p>
+            Manage EPUB, PDF, MOBI, and AZW3 books in one native macOS library.
+          </p>
+        </article>
+        <article class="feature">
+          <h3>Your originals stay yours</h3>
+          <p>
+            Rebacked preserves source books and exports modified EPUBs
+            as separate files.
+          </p>
+        </article>
+        <article class="feature">
+          <h3>No subscription</h3>
+          <p>
+            One purchase. No account, license key, recurring fee,
+            advertising, or analytics.
+          </p>
+        </article>
+      </div>
+      <p class="meta">
+        Requires macOS 14 or later.
+      </p>
     </section>
-
-    <section class="features">
-      <article class="feature">
-        <h3>Organize everything</h3>
-        <p>
-          Collections, Smart Collections, saved searches, series,
-          tags, ratings, notes, and custom metadata.
-        </p>
-      </article>
-
-      <article class="feature">
-        <h3>Fix your metadata</h3>
-        <p>
-          Edit titles, authors, series, ISBNs, tags, reading status,
-          and other book information.
-        </p>
-      </article>
-
-      <article class="feature">
-        <h3>Better covers</h3>
-        <p>
-          Replace artwork, search Open Library, maintain cover history,
-          and repair missing EPUB covers.
-        </p>
-      </article>
-
-      <article class="feature">
-        <h3>Multiple formats</h3>
-        <p>
-          Manage EPUB, PDF, MOBI, and AZW3 books in one native macOS
-          library.
-        </p>
-      </article>
-
-      <article class="feature">
-        <h3>Your originals stay yours</h3>
-        <p>
-          Rebacked preserves source books and exports changes into
-          separate files instead of silently overwriting originals.
-        </p>
-      </article>
-
-      <article class="feature">
-        <h3>No subscription</h3>
-        <p>
-          One purchase. No account, license key, recurring fee, ads,
-          or analytics.
-        </p>
-      </article>
+    <section id="support">
+      <h2>Support</h2>
+      <p>
+        Need help with Rebacked? Contact
+        <a href="mailto:YOUR_EMAIL">YOUR_EMAIL</a>.
+      </p>
+      <h3>Supported Formats</h3>
+      <p>
+        Rebacked supports EPUB, PDF, MOBI, and AZW3 library management.
+      </p>
+      <h3>Does Rebacked modify my original books?</h3>
+      <p>
+        Rebacked is designed to preserve your original source files.
+        EPUB metadata and cover changes are written to a separate exported
+        copy rather than silently replacing the source book.
+      </p>
+      <h3>Why can't Rebacked modify MOBI or AZW3 files?</h3>
+      <p>
+        Rebacked can manage those formats in your library, but exports
+        the original source file unchanged.
+      </p>
+      <h3>What happens if I move a source book?</h3>
+      <p>
+        Rebacked can reconnect an existing library entry to a moved
+        source file using Locate Source.
+      </p>
+      <h3>Kindle and Kobo</h3>
+      <p>
+        Rebacked can prepare supported EPUB and PDF files for manual
+        Kindle and Kobo workflows. Rebacked does not operate Amazon,
+        Kindle, Kobo, or their associated services.
+      </p>
+      <h3>DRM</h3>
+      <p>
+        Rebacked does not remove or circumvent DRM.
+      </p>
     </section>
-
-    <h2>Built for macOS</h2>
-
-    <p>
-      Rebacked is designed as a native macOS application for people
-      who care about how their ebook library is organized and presented.
-    </p>
-
-    <p class="meta">
-      Requires macOS 14 or later.
-    </p>
+    <section id="privacy">
+      <h2>Privacy Policy</h2>
+      <p class="meta">Last updated: September 4, 2026</p>
+      <p>
+        Rebacked is a local-first ebook library application for macOS.
+        Your library and associated data are primarily stored locally
+        on your Mac.
+      </p>
+      <h3>Information Rebacked Collects</h3>
+      <p>
+        Rebacked does not require an account and does not collect or
+        transmit your ebook library, notes, reading history, collections,
+        ratings, custom metadata, or other locally stored library information
+        to Rebacked.
+      </p>
+      <p>
+        Rebacked does not include third-party advertising or analytics.
+      </p>
+      <h3>Local Data</h3>
+      <p>
+        Rebacked may locally store book metadata, collections, ratings,
+        reading status, notes, custom fields, saved searches, cover
+        information, and references to source book files.
+      </p>
+      <p>
+        Rebacked does not operate a cloud service that uploads or stores
+        your ebook library.
+      </p>
+      <h3>Book and Folder Access</h3>
+      <p>
+        Rebacked accesses files, folders, and export locations that you
+        explicitly select or authorize through macOS.
+      </p>
+      <p>
+        Rebacked may retain permission to locations you previously
+        authorized so that source access and export workflows continue
+        working after the application is restarted.
+      </p>
+      <h3>Original Book Files</h3>
+      <p>
+        Rebacked is designed to preserve original source books.
+        Modified EPUB files are exported separately rather than silently
+        replacing the source.
+      </p>
+      <p>
+        PDF, MOBI, and AZW3 exports may consist of unchanged copies of
+        the original source files.
+      </p>
+      <h3>Optional Online Features</h3>
+      <p>
+        Some Rebacked features can optionally communicate with
+        third-party online services to retrieve book information or
+        cover artwork.
+      </p>
+      <p>
+        When you choose to use one of these features, information needed
+        for the request, such as title, author, ISBN, or similar book
+        metadata, may be sent directly to the applicable service.
+      </p>
+      <p>
+        Those services may also receive technical information normally
+        associated with an internet request, such as your IP address.
+      </p>
+      <h3>Open Library</h3>
+      <p>
+        Rebacked can use Open Library to search for book information
+        and cover artwork. Provider responses may be temporarily cached
+        to improve performance and reduce unnecessary requests.
+      </p>
+      <h3>Goodreads</h3>
+      <p>
+        Rebacked can open Goodreads book pages in your default browser.
+        Your interaction with Goodreads is governed by Goodreads'
+        own privacy policy and terms.
+      </p>
+      <h3>Kindle and Kobo</h3>
+      <p>
+        Information you provide directly to Amazon, Kindle, Kobo, or
+        related services is governed by those services' respective
+        privacy policies and terms.
+      </p>
+      <h3>Data Sharing</h3>
+      <p>
+        Rebacked does not sell your personal information and does not
+        operate a service that receives a copy of your ebook library.
+      </p>
+      <p>
+        Information may be sent to third-party services only when
+        necessary for optional online features you choose to use.
+      </p>
+      <h3>Data Retention and Deletion</h3>
+      <p>
+        Rebacked library data is stored locally on your Mac. Because
+        Rebacked does not require an account or maintain a cloud copy
+        of your library, there is no server-side Rebacked library
+        associated with your identity.
+      </p>
+      <h3>Children's Privacy</h3>
+      <p>
+        Rebacked does not knowingly collect personal information from children.
+      </p>
+      <h3>Changes to This Policy</h3>
+      <p>
+        This policy may be updated if Rebacked's functionality or
+        privacy practices change. The revision date above indicates
+        the most recent update.
+      </p>
+      <h3>Contact</h3>
+      <p>
+        Privacy questions can be sent to
+        <a href="mailto:YOUR_EMAIL">YOUR_EMAIL</a>.
+      </p>
+    </section>
+    <section id="terms">
+      <h2>Terms of Use</h2>
+      <p class="meta">Last updated: September 4, 2026</p>
+      <p>
+        Rebacked is distributed through the Mac App Store. Your purchase
+        and use of the application are subject to applicable Apple terms
+        and Apple's standard Licensed Application End User License
+        Agreement unless another agreement is provided.
+      </p>
+      <h3>Your Files</h3>
+      <p>
+        You remain responsible for the ebook files you import, organize,
+        modify, and export using Rebacked.
+      </p>
+      <p>
+        You should maintain backups of important files and library data.
+      </p>
+      <h3>Supported Content</h3>
+      <p>
+        Rebacked is intended for use with files you are legally entitled
+        to possess and modify.
+      </p>
+      <p>
+        Rebacked does not provide DRM circumvention functionality.
+      </p>
+      <h3>Third-Party Services</h3>
+      <p>
+        Rebacked may provide optional access to third-party metadata,
+        cover, website, Kindle, or Kobo workflows. Those services are
+        operated independently and are subject to their own terms and
+        availability.
+      </p>
+      <h3>Availability</h3>
+      <p>
+        Features may change as Rebacked is updated. Compatibility with
+        third-party services, devices, or file variations cannot be
+        guaranteed indefinitely.
+      </p>
+      <h3>Contact</h3>
+      <p>
+        Questions can be sent to
+        <a href="mailto:YOUR_EMAIL">YOUR_EMAIL</a>.
+      </p>
+    </section>
+    <section id="changelog">
+      <h2>Changelog</h2>
+      <h3>1.0.0</h3>
+      <p class="meta">Initial Mac App Store release</p>
+      <ul>
+        <li>EPUB, PDF, MOBI, and AZW3 library management</li>
+        <li>Metadata editing</li>
+        <li>Cover management and Open Library cover search</li>
+        <li>Collections and Smart Collections</li>
+        <li>Series management</li>
+        <li>Batch editing</li>
+        <li>Reading status and ratings</li>
+        <li>Notes and custom metadata</li>
+        <li>Folder import</li>
+        <li>CSV and JSON metadata export</li>
+        <li>EPUB metadata and cover export</li>
+        <li>Kindle and Kobo preparation workflows</li>
+      </ul>
+    </section>
   </main>
-
   <footer>
     © 2026 Rebacked ·
-      <a href="../support/">Support</a>
-      <a href="../privacy/">Privacy</a>
-      <a href="../terms/">Terms</a>
-      <a href="../changelog/">Changelog</a>
+    <a href="#support">Support</a> ·
+    <a href="#privacy">Privacy</a> ·
+    <a href="#terms">Terms</a> ·
+    <a href="#changelog">Changelog</a>
   </footer>
 </body>
 </html>
